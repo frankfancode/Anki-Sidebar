@@ -52,16 +52,16 @@ button {
     outline: 1px solid transparent;
     outline-offset: 2px !important;
     color: var(--vscode-button-foreground);
-    background: var(--vscode-button-background);
+    background: transparent;
 }
 
 button:hover {
     cursor: pointer;
-    background: var(--vscode-button-hoverBackground);
+    background: transparent;
 }
 
 button:focus {
-    outline-color: var(--vscode-focusBorder);
+    outline-color: transparent;
 }
 
 button.secondary {

@@ -1,7 +1,7 @@
 {
-  "name": "ankisidebar",
-  "displayName": "Anki Sidebar",
-  "description": "Anki Sidebar seamlessly integrates Anki flashcard learning into VSCode, making it easier than ever to review and memorize your cards while coding.",
+  "name": "ankisidebarminimal",
+  "displayName": "Anki Sidebar Minimal",
+  "description": "modify anki sidebar, make font smaller",
   "icon": "market/icon.png",
   "version": "1.0.1",
   "engines": {
@@ -14,13 +14,13 @@
     "type": "git",
     "url": "https://github.com/code-cola-js/Anki-Sidebar.git"
   },
-  "publisher": "codeColajs",
+  "publisher": "ffcode",
   "activationEvents": [],
   "main": "./dist/extension.js",
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true,
-      "description": "Anki can function within an untrusted workspace."
+      "description": "Anki can function within an untrusted workspace. modify"
     }
   },
   "contributes": {
