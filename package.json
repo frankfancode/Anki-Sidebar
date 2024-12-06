@@ -3,7 +3,7 @@
   "displayName": "Anki Sidebar Minimal",
   "description": "modify anki sidebar, make font smaller, no css effects",
   "icon": "market/icon.png",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.78.0"
   },
