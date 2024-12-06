@@ -138,14 +138,22 @@ export class AnkiViewViewProvider implements vscode.WebviewViewProvider {
 	}
 
 	private removeColorAndBackground(html: string) {
+		try {
+			let cleanedHtml = html.replace(/<!--[\s\S]*?-->/g, '');
 
-		// Remove the color and backgroundColor properties using regular expressions
-		// 只匹配 Style 中的 background 和 color
-		let newHtml = html.replace(/<style>(.*?)<\/style>/gis, (match, group) => {
-			return match.replace(/(background|background-color|font-size|color)\s*:[^;}]+;?/gi, '');
-		});
-		  
-		return newHtml
+			// Remove all attributes (except for tag-essential attributes like 'href' for <a> or 'src' for <img>)
+			cleanedHtml = cleanedHtml.replace(/<(\w+)(?:\s+(?:class|style|id|data-[\w-]+|on\w+)=["'][^"']*["'])*\s*>/g, '<$1>');
+		
+			// Remove inline style tags
+			cleanedHtml = cleanedHtml.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+		
+			// Remove link tags for external stylesheets
+			cleanedHtml = cleanedHtml.replace(/<link\b[^>]+rel=["']?stylesheet["']?[^>]*>/gi, '');
+		
+			return cleanedHtml.trim();	
+		} catch (error) {
+			return html;
+		}
 	}
 
 	public async showAnswer() {
@@ -159,7 +167,7 @@ export class AnkiViewViewProvider implements vscode.WebviewViewProvider {
 
 			this.ankiHtml = ankiHtml;
 
-			const newAnkiHtml = this.removeColorAndBackground(ankiHtml)
+			const newAnkiHtml = this.removeColorAndBackground(ankiHtml);
 
 			let cardHtml = `
 			<anki class="ankiview-answer">
